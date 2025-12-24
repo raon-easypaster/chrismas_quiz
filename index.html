@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">선물 가득한 열방위에서는교회 퀴즈대회</title>
+    <!-- Google Fonts: Jua for a playful Korean font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nunito:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="snow-container"></div>
+
+    <div id="app">
+        <!-- Intro Section: Team Setup -->
+        <section id="intro-screen" class="screen active">
+            <div class="logo-area">
+                <div class="santa-hat-icon">🎅</div>
+                <h1>선물 가득한<br><span id="title-main">열방위에서는교회</span> 퀴즈대회</h1>
+                <p class="subtitle">모두 함께 즐기는 크리스마스 파티!</p>
+            </div>
+
+            <div class="card setup-card">
+                <h2>교회 & 팀 설정</h2>
+                <div style="margin-bottom: 20px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">교회 이름</label>
+                    <input type="text" id="church-name-input" placeholder="교회 이름을 입력하세요"
+                        style="width: 100%; padding: 10px; font-size: 1rem; border-radius: 8px; border: 1px solid #ccc;">
+                </div>
+                <h3>참가 팀 설정</h3>
+                <div id="team-inputs">
+                    <!-- Team inputs will be generated here -->
+                </div>
+                <button id="add-team-btn" class="btn btn-secondary">+ 팀 추가하기</button>
+                <div class="spacer"></div>
+                <button id="start-game-btn" class="btn btn-primary btn-lg">게임 시작하기 🎄</button>
+                <div class="spacer" style="height: 10px;"></div>
+                <button id="edit-quiz-btn" class="btn btn-warning" style="font-size: 1rem; padding: 10px 20px;">퀴즈 내용
+                    수정하기 ✏️</button>
+            </div>
+        </section>
+
+        <!-- Game Board Section -->
+        <section id="board-screen" class="screen hidden">
+            <header class="game-header">
+                <div class="title-small"><span id="title-header">열방위에서는교회</span> 퀴즈대회</div>
+                <div class="current-score-ticker" id="score-ticker">
+                    <!-- Live scores will scroll here -->
+                </div>
+            </header>
+
+            <div class="game-board-container">
+                <div id="game-board" class="game-board">
+                    <!-- Categories and points will be generated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Question Section (Modal style) -->
+        <section id="question-screen" class="screen hidden">
+            <div class="question-container">
+                <div class="question-header">
+                    <span id="q-category" class="badge">성경 상식</span>
+                    <span id="q-points" class="badge points">10 점</span>
+                </div>
+
+                <div class="question-content">
+                    <h2 id="question-text">여기에 문제가 나옵니다.</h2>
+                    <div id="media-area"></div>
+                </div>
+
+                <div class="answer-area hidden" id="answer-area">
+                    <h3 class="answer-label">정답</h3>
+                    <div id="answer-text" class="answer-text">정답 내용</div>
+                </div>
+
+                <div class="controls">
+                    <button id="show-answer-btn" class="btn btn-warning">정답 확인</button>
+                    <button id="close-question-btn" class="btn btn-secondary hidden">닫기</button>
+                </div>
+
+                <!-- Scoring for this question -->
+                <div class="scoring-area hidden" id="scoring-area">
+                    <h4>정답 팀 선택</h4>
+                    <div id="team-scoring-buttons" class="team-scoring-grid">
+                        <!-- Buttons to award points to specific teams -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Score Section -->
+        <section id="result-screen" class="screen hidden">
+            <div class="confetti-container"></div>
+            <h1>최종 결과!</h1>
+            <div id="final-scores" class="final-scores-grid">
+                <!-- Final results -->
+            </div>
+            <button id="restart-btn" class="btn btn-primary">다시 시작하기</button>
+        </section>
+
+        <!-- Editor Section -->
+        <section id="editor-screen" class="screen hidden"
+            style="background: white; border-radius: 30px; padding: 40px; color: #333; width: 95%; max-width: 1200px; height: 90vh; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>✏️ 퀴즈 데이터 수정</h2>
+                <div>
+                    <button id="save-data-btn" class="btn btn-primary">저장하고 나가기</button>
+                    <button id="reset-data-btn" class="btn btn-secondary" style="background: #666;">초기화</button>
+                    <button id="export-data-btn" class="btn btn-warning" style="background: #ff9800;">데이터 내보내기</button>
+                </div>
+            </div>
+            <div id="editor-container" style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Editor items generated via JS -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Audio Effects -->
+    <audio id="bgm-christmas" loop>
+        <!-- Placeholder for royalty free christmas BGM if user adds one -->
+    </audio>
+    <audio id="sfx-correct" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"></audio>
+    <!-- Success sound placeholder -->
+    <audio id="sfx-wrong" src="https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3"></audio>
+    <!-- Fail sound placeholder -->
+
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
